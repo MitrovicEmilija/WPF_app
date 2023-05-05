@@ -1,0 +1,101 @@
+﻿<Window x:Class="PrevoznaSredstva.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrevoznaSredstva"
+        xmlns:uc="clr-namespace:PrevoznaSredstva.MyUserControl" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid x:Name = "FormLayoutGrid" Background = "#D1C7BD">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "*" />
+            <RowDefinition Height = "*" />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Grid.Column="0" Background="#D1C7BD" Margin="0,0,0,170" HorizontalAlignment="Right" Width="565" Height="40">
+            <MenuItem x:Name="Datoteka" Header="Datoteka" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30">
+                <MenuItem x:Name="import" Header="Uvozi" Background="#EFE9E1" Click="Import_Click"></MenuItem>
+                <MenuItem x:Name="export" Header="Izvozi" Background="#EFE9E1" Click="Export_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="Oglasi" Header="Oglasi" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" />
+            <MenuItem x:Name="Orodja" Header="Orodja" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" />
+            <MenuItem x:Name="Dodaj" Header="Dodaj" Click="Dodaj_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" />
+            <MenuItem x:Name="Odstrani" Header="Odstrani" CommandParameter="{Binding Path=CurrSelected}" Click="Brisi_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" />
+            <MenuItem x:Name="Uredi" Header="Uredi" CommandParameter="{Binding Path=CurrSelected}" Click="Edit_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" />
+            <MenuItem x:Name="Izhod" Header="Izhod" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" Click="ExitApp"/>
+            <MenuItem x:Name="Nastavitve" Header="Nastavitve" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" Click="NastavitveClick" />
+        </Menu>
+
+        <Label Grid.Row="0" x:Name="current" Content="{Binding Path=CurrSelected.Naziv}" HorizontalAlignment="Left" FontSize="16" FontStyle="Italic" FontWeight="Bold" Margin="20,0,0,0" Height="35" Width="100" />
+
+        <Button Background="#D1C7BD" Height="70" Width="122" HorizontalAlignment="Left" Margin="0,0,0,150">
+            <Image Source="C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\Images\logo.png" Height="70" Width="122" HorizontalAlignment="Left" />
+        </Button>
+
+        <StackPanel Orientation="Horizontal" Width="800" Margin="0,173,0,-512" Grid.RowSpan="2">
+            <uc:Filtering Grid.Row="1" VerticalAlignment="Top" Height="257" Width="400"/>
+        </StackPanel>
+
+        <ListView ItemsSource="{Binding listaOglasa}" SelectedItem="{Binding Path=CurrSelected}" HorizontalAlignment="Right" x:Name="ListaOglasa" Background="#D1C7BD" BorderBrush="#72383D" BorderThickness="3" FontStyle="Italic" FontWeight="DemiBold" Height="180" Width="270" Margin="0,0,20,0" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ShowGridLines="False" x:Name="grid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" FontSize="14" FontStyle="Italic"  TextAlignment="Center" Text="{Binding Naziv}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="12" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" Text="{Binding Znamka}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="12" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" Text="{Binding Starost}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="12" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" Text="{Binding LetoProizvodnje}"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" FontSize="12" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" Text="{Binding PrevozeniKm}"/>
+                        <Image Grid.Column="0" Source="{Binding Slika}" Height="40" Width="35" Margin="0,0,10,0"></Image>
+                        
+                        <!--
+                        <Image.Style>
+                                <Style TargetType="Image">
+                                    <Setter Property="Source" Value="{Binding Slika}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Value="True" Binding="{Binding HaveImage}">
+                                            <Setter Property="Source" Value="{Binding Slika}" />
+                                        </DataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Path=HaveImage}" Value="False" />
+                                                <Condition Binding="{Binding Path=Znamka}" Value="bmw" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Source" Value="/logo.png"/>
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Path=HaveImage}" Value="False" />
+                                                <Condition Binding="{Binding Path=Znamka}" Value="audi" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Source" Value="/logo.png"/>
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                        <Image.Style />
+                        -->
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+</Window>
