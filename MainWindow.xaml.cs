@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
+using System.Windows.Threading;
 
 namespace PrevoznaSredstva
 {
@@ -42,7 +43,18 @@ namespace PrevoznaSredstva
 
             ListaOglasa.MouseDoubleClick += new MouseButtonEventHandler(ListaOglasa_MouseDoubleClick);
 
+            DispatcherTimer dt = new DispatcherTimer();
+            dt.Interval = new TimeSpan(0, 0, 1);
+            dt.Tick += Dt_Tick;
+            dt.Start();
+
         }
+
+        private void Dt_Tick(object? sender, EventArgs e)
+        {
+            Label_Time.Content = DateTime.Now.ToString();
+        }
+
         private void ListaOglasa_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (ListaOglasa.SelectedItem != null)
@@ -76,8 +88,11 @@ namespace PrevoznaSredstva
             oglas.Starost = addWin.starost_avta.Text;
             oglas.LetoProizvodnje = addWin.leto_proizvodnje.Text;
             oglas.PrevozeniKm = addWin.prevozeni_km.Text;
-            oglas.Slika = new BitmapImage(new Uri(addWin.slika.Source.ToString()));         
-
+            
+            if(addWin.slika.Source != null)
+            {
+                oglas.Slika = new BitmapImage(new Uri(addWin.slika.Source.ToString()));
+            }
             ListaOglasa.ItemsSource = noviOglasi;
             noviOglasi.Add(oglas);
         }
@@ -146,6 +161,7 @@ namespace PrevoznaSredstva
                 ShowReadOnly = true
             };
             openFileDialog.ShowDialog();
+
             var vm = this.DataContext as ViewModel;
             if (!string.IsNullOrEmpty(openFileDialog.FileName))
             {
@@ -153,11 +169,11 @@ namespace PrevoznaSredstva
                 {
                     try
                     {
-                        XmlSerializer xml = new XmlSerializer(vm.listaOglasa.GetType());
+                        XmlSerializer xml = new XmlSerializer(vm.ListaOglasi.GetType());
                         ObservableCollection<Oglasi> oglasi = (ObservableCollection<Oglasi>)xml.Deserialize(sr);
                         if (oglasi != null)
                         {
-                            vm.listaOglasa = oglasi;
+                            vm.ListaOglasi = oglasi;
                         }
 
                         ListaOglasa.Items.Refresh();
@@ -168,7 +184,7 @@ namespace PrevoznaSredstva
                     }
                     finally
                     {
-                        vm.listaOglasa = new ObservableCollection<Oglasi>();
+                        vm.ListaOglasi = new ObservableCollection<Oglasi>();
                     }
 
                 }
@@ -183,14 +199,15 @@ namespace PrevoznaSredstva
             saveFileDialog.InitialDirectory = @"D:\";
             saveFileDialog.Title = "Save a XML File";
             saveFileDialog.ShowDialog();
+
             var vm = this.DataContext as ViewModel;
             var name = saveFileDialog.FileName;
             if (!string.IsNullOrEmpty(saveFileDialog.FileName))
             {
                 using (StreamWriter sw = new StreamWriter(name))
                 {
-                    XmlSerializer xml = new XmlSerializer(vm.listaOglasa.GetType());
-                    xml.Serialize(sw, vm.listaOglasa);
+                    XmlSerializer xml = new XmlSerializer(vm.ListaOglasi.GetType());
+                    xml.Serialize(sw, vm.ListaOglasi);
                 }
             }
         }

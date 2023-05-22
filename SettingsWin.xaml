@@ -3,10 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PrevoznaSredstva" d:DataContext="{d:DesignInstance Type=local:ViewModelZnamke}"
+        xmlns:local="clr-namespace:PrevoznaSredstva"
+        d:DataContext="{d:DesignInstance Type=local:ViewModelZnamke}"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         Title="Window1" Height="450" Width="800">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MyResources/MyDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid Background="#D1C7BD">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,17 +24,29 @@
         </Grid.RowDefinitions>
 
         <TabControl Grid.Row="0" Margin="0,0,0,0" Background="#D1C7BD">
-            <TabItem Header="Znamke" FontStyle="Italic" FontWeight="DemiBold">
-                <StackPanel Width="700" Height="300" Orientation="Horizontal">
-                    <Label Content="Ime znamke:" Margin="30,31,10,20" FontStyle="Italic" FontWeight="Bold" FontSize="12"></Label>
-                    <TextBox x:Name="txtNazivZnamke" Text="{Binding Path=NewZnamka}" Margin="0, 33, 10, 10" Width="100" Height="20" Background="#EFE9E1" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <Button Grid.Row="0" Width="90" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,33" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Click="AddZnamko_Click">Dodaj znamko</Button>
-                    <ListView Grid.Row="1" x:Name="ListaZnamk" SelectedItem="{Binding Path=CurrZnamka}" Background="#EFE9E1" BorderBrush="#72383D" BorderThickness="3" Height="200" Width="150" VerticalAlignment="Bottom" HorizontalAlignment="Left"></ListView>
-                    <Button Width="80" Height="20" Margin="15,0,0,0" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Click="UpdateZnamko_Click">Uredi</Button>
-                    <Button Width="80" Height="20" Margin="10,0,0,0" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Click="RemoveZnamko_Click">Odstrani</Button>
-                </StackPanel>
+            <TabItem Header="Brands" Style="{StaticResource CustomTabItemStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Width="150" Margin="10">
+                        <Label Content="Name of the brand:" Style="{StaticResource SettingsLabelStyle}"/>
+                        <TextBox x:Name="txtNazivZnamke" Text="{Binding Path=NewZnamka}" Style="{StaticResource SettingsTextBoxStyle}" Margin="0,5,0,10"/>
+                        <Button Grid.Row="0" Style="{StaticResource SettingsButtonStyle}" Click="AddZnamko_Click">Add brand</Button>
+                    </StackPanel>
+
+                    <ListView Grid.Column="1" x:Name="ListaZnamk" Style="{StaticResource SettingsListViewStyle}" SelectedItem="{Binding Path=CurrZnamka}">
+                    </ListView>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10">
+                        <Button Style="{StaticResource SettingsButtonStyle}" Click="UpdateZnamko_Click" Margin="0,5">Edit</Button>
+                        <Button Style="{StaticResource SettingsButtonStyle}" Click="RemoveZnamko_Click" Margin="10,5,0,5">Remove</Button>
+                    </StackPanel>
+                </Grid>
             </TabItem>
-            <TabItem Header="Avtomatsko shranjevanje" FontStyle="Italic" FontWeight="DemiBold"></TabItem>
+            <TabItem Header="Auto save" FontStyle="Italic" FontWeight="DemiBold"></TabItem>
         </TabControl>
     </Grid>
 </Window>

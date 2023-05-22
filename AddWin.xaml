@@ -6,34 +6,42 @@
         xmlns:local="clr-namespace:PrevoznaSredstva" d:DataContext="{d:DesignInstance Type=local:ViewModelZnamke}"
         mc:Ignorable="d"
         Title="AddWin" Height="450" Width="800">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MyResources/MyDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border BorderThickness="25" BorderBrush="#AC9C8D" Background="#D1C7BD" Margin="0,0,1.6,0.2">
             <Canvas Margin="0.2,0.2,1.2,0.4" RenderTransformOrigin="0.521,0.415">
-                <Label Name="naziv" Content="Naziv oglasa" FontStyle="Italic" BorderBrush="#72383D"  BorderThickness="3" FontSize="8" FontWeight="Bold" Background="#EFE9E1" HorizontalContentAlignment="Center" Height="25" Canvas.Top="10" Width="100" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
-                <TextBox x:Name="naziv_oglasa" Background="#EFE9E1" Width="202" Height="20" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="15"></TextBox>
+                <Label Name="naziv" Content="Name" Style="{StaticResource CustomLabelStyle}" Canvas.Top="10" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
+                <TextBox x:Name="naziv_oglasa" Style="{StaticResource CustomTextBoxStyle}" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="15"></TextBox>
 
-                <Label Name="znamka" Content="Znamka avtomobila" FontStyle="Italic" BorderBrush="#72383D"  BorderThickness="3" FontSize="8" FontWeight="Bold" Background="#EFE9E1" HorizontalContentAlignment="Center" Height="25" Canvas.Top="40" Width="100" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
-                <!--TextBox x:Name="znamka_avta" Background="#EFE9E1" Width="202" Height="20" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="45" / -->
-                <ComboBox x:Name="comboBox" SelectedValue="{Binding Path=CurrZnamka}" Background="#EFE9E1" Width="202" Height="20" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="45"></ComboBox>
+                <Label Name="znamka" Content="Brand" Style="{StaticResource CustomLabelStyle}" Canvas.Top="40" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
+                <ComboBox x:Name="comboBox" SelectedValue="{Binding Path=CurrZnamka}" Style="{StaticResource CustomComboBoxStyle}" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="45"></ComboBox>
 
-                <Label Name="img" Content="Slika" FontStyle="Italic" BorderBrush="#72383D" BorderThickness="3" FontSize="8" FontWeight="Bold" Background="#EFE9E1" HorizontalContentAlignment="Center" Height="25" Canvas.Top="79" Width="100" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
-                <Image x:Name="slika" Height="49" Width="129" Canvas.Left="168" Canvas.Top="79"/>
-                <Button Name="select" Content="Izberi sliko" Click="izberi_Sliko_Click" Width="70" Height="21" FontSize="11" FontStyle="Italic" FontWeight="Bold" Background="#EFE9E1" Canvas.Left="312" Canvas.Top="107"/>
+                <Label Name="img" Content="Picture" Style="{StaticResource CustomLabelStyle}" Canvas.Top="79" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
+                <Image x:Name="slika" Style="{StaticResource CustomImageStyle}" Canvas.Left="168" Canvas.Top="79"/>
+                <Button Name="select" Content="Choose picture" Click="izberi_Sliko_Click" Style="{StaticResource CustomButtonStyle}" Canvas.Left="312" Canvas.Top="107"/>
 
-                <Label Name="starost" Content="Starost" FontStyle="Italic" BorderBrush="#72383D"  BorderThickness="3" FontSize="8" FontWeight="Bold" Background="#EFE9E1" HorizontalContentAlignment="Center" Height="25" Canvas.Top="143" Width="100" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
-                <TextBox x:Name="starost_avta" Background="#EFE9E1" Width="202" Height="20" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="148"></TextBox>
+                <Label Name="starost" Content="Age" Style="{StaticResource CustomLabelStyle}" Canvas.Top="143" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
+                <TextBox x:Name="starost_avta" Style="{StaticResource CustomTextBoxStyle}" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="148"></TextBox>
 
-                <Label Name="leto" Content="Leto proizvodnje" FontStyle="Italic" BorderBrush="#72383D"  BorderThickness="3" FontSize="8" FontWeight="Bold" Background="#EFE9E1" HorizontalContentAlignment="Center" Height="25" Canvas.Top="183" Width="100" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
-                <TextBox x:Name="leto_proizvodnje" Background="#EFE9E1" Width="202" Height="20" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="188"></TextBox>
+                <Label Name="leto" Content="Production year" Style="{StaticResource CustomLabelStyle}" Canvas.Top="183" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
+                <TextBox x:Name="leto_proizvodnje" Style="{StaticResource CustomTextBoxStyle}" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="188"></TextBox>
 
-                <Label Name="km" Content="Prevozeni km" FontStyle="Italic" BorderBrush="#72383D"  BorderThickness="3" FontSize="8" FontWeight="Bold" Background="#EFE9E1" HorizontalContentAlignment="Center" Height="25" Canvas.Top="221" Width="100" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
-                <TextBox x:Name="prevozeni_km" Background="#EFE9E1" Width="202" Height="20" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="221"></TextBox>
+                <Label Name="km" Content="Spent km" Style="{StaticResource CustomLabelStyle}" Height="25" Canvas.Top="221" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
+                <TextBox x:Name="prevozeni_km" Style="{StaticResource CustomTextBoxStyle}" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="221"></TextBox>
 
-                <Button Name="potrdi" Content="Potrdi" IsDefault="True" Click="potrdi_Click" Background="#EFE9E1" FontWeight="Bold" Width="50" RenderTransformOrigin="0.553,0.583" Canvas.Left="385" Canvas.Top="206"></Button>
-                <Button Name="zavrni" Content="Zavrni" IsCancel="True" Background="#EFE9E1" FontWeight="Bold" Width="50" Canvas.Left="385" Canvas.Top="232" Height="19"></Button>
+                <Button Name="potrdi" Content="Confirm" IsDefault="True" Click="potrdi_Click" Style="{StaticResource CustomButtonStyle}" RenderTransformOrigin="0.553,0.583" Canvas.Left="385" Canvas.Top="206"></Button>
+                <Button Name="zavrni" Content="Cancel" IsCancel="True" Style="{StaticResource CustomButtonStyle}" Canvas.Left="385" Canvas.Top="232" Height="19"></Button>
             </Canvas>
         </Border>
     </Grid>

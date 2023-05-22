@@ -1,7 +1,9 @@
+C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\Images\logo.PNG
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.exe
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.dll.config
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.deps.json
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.runtimeconfig.json
+C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.dll
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.pdb
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva.csproj.AssemblyReference.cache
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\AddWin.g.cs
@@ -10,12 +12,14 @@ C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-w
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\MyUserControl\Filtering.g.cs
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\SettingsWin.g.cs
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva_Content.g.cs
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva_MarkupCompile.cache
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva_MarkupCompile.lref
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\AddWin.baml
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\EditWin.baml
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\MyResources\MyDictionary.baml
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\MyUserControl\Filtering.baml
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\SettingsWin.baml
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva.g.resources
@@ -28,4 +32,3 @@ C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-w
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva.pdb
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva.genruntimeconfig.cache
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\ref\PrevoznaSredstva.dll
-C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva.csproj.CopyComplete

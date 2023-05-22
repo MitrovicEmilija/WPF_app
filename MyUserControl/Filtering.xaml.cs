@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +22,22 @@ namespace PrevoznaSredstva.MyUserControl
     /// <summary>
     /// Interaction logic for Filtering.xaml
     /// </summary>
-    public partial class Filtering : UserControl
+    public partial class Filtering : UserControl, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public Filtering()
         {
             InitializeComponent();
-            this.DataContext = ViewModel.getInstance();
+            var vm = ViewModel.getInstance();
+            this.DataContext = vm;
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ViewModel.getInstance().listaOglasa);
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ViewModel.getInstance().ListaOglasi);
             view.Filter = FilterOglas;
         }
         private bool FilterOglas(object oglas)
@@ -38,19 +47,29 @@ namespace PrevoznaSredstva.MyUserControl
                 return true;
             } else
             {
-                return (oglas as Oglasi).Naziv.Contains(filterText.Text, StringComparison.OrdinalIgnoreCase);
+                var oglasi = ViewModel.getInstance().ListaOglasi;
+                return ((Oglasi)oglas).Naziv.IndexOf(filterText.Text, StringComparison.OrdinalIgnoreCase) >= 0;
             }
         }
 
         private void FilterText_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            try
+            CollectionViewSource.GetDefaultView(ViewModel.getInstance().ListaOglasi).Filter = FilterOglas;
+            CollectionViewSource.GetDefaultView(ViewModel.getInstance().ListaOglasi).Refresh();
+        }
+
+        private String selectedZnamka;
+
+        public String SelectedZnamka
+        {
+            get { return selectedZnamka; }
+            set
             {
-                ViewModel vm = this.DataContext as ViewModel;
-                CollectionViewSource.GetDefaultView(vm.listaOglasa).Refresh();
-            } catch(Exception ex)
-            {
-                _ = ex.Message;
+                if (selectedZnamka != value)
+                {
+                    selectedZnamka = value;
+                    OnPropertyChanged(nameof(selectedZnamka));
+                }
             }
         }
     }

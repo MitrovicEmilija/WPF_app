@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\logo.PNG" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\logo.PNG">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="PrevoznaSredstva">
       <HintPath>bin\Debug\net6.0-windows\PrevoznaSredstva.dll</HintPath>
     </Reference>

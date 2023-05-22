@@ -30,6 +30,9 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MyResources\MyDictionary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MyUserControl\Filtering.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -3,99 +3,129 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PrevoznaSredstva"
-        xmlns:uc="clr-namespace:PrevoznaSredstva.MyUserControl" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+        xmlns:uc="clr-namespace:PrevoznaSredstva.MyUserControl"
+        xmlns:local="clr-namespace:PrevoznaSredstva" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-    <Grid x:Name = "FormLayoutGrid" Background = "#D1C7BD">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" ></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MyResources/MyDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
+    <Grid x:Name="FormLayoutGrid" Background="#D1C7BD">
         <Grid.RowDefinitions>
-            <RowDefinition Height = "*" />
-            <RowDefinition Height = "*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0" Grid.Column="0" Background="#D1C7BD" Margin="0,0,0,170" HorizontalAlignment="Right" Width="565" Height="40">
-            <MenuItem x:Name="Datoteka" Header="Datoteka" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30">
-                <MenuItem x:Name="import" Header="Uvozi" Background="#EFE9E1" Click="Import_Click"></MenuItem>
-                <MenuItem x:Name="export" Header="Izvozi" Background="#EFE9E1" Click="Export_Click"></MenuItem>
-            </MenuItem>
-            <MenuItem x:Name="Oglasi" Header="Oglasi" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" />
-            <MenuItem x:Name="Orodja" Header="Orodja" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" />
-            <MenuItem x:Name="Dodaj" Header="Dodaj" Click="Dodaj_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" />
-            <MenuItem x:Name="Odstrani" Header="Odstrani" CommandParameter="{Binding Path=CurrSelected}" Click="Brisi_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" />
-            <MenuItem x:Name="Uredi" Header="Uredi" CommandParameter="{Binding Path=CurrSelected}" Click="Edit_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" />
-            <MenuItem x:Name="Izhod" Header="Izhod" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" Click="ExitApp"/>
-            <MenuItem x:Name="Nastavitve" Header="Nastavitve" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic" Height="30" Click="NastavitveClick" />
-        </Menu>
+        <!-- Top Row: Menu and Logo -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" x:Name="current" Content="{Binding Path=CurrSelected.Naziv}" HorizontalAlignment="Left" FontSize="16" FontStyle="Italic" FontWeight="Bold" Margin="20,0,0,0" Height="35" Width="100" />
+            <Button Style="{StaticResource ButtonImageStyle}">
+                <Image Source="Images\logo.png" Height="70" Width="122" HorizontalAlignment="Left"/>
+            </Button>
 
-        <Button Background="#D1C7BD" Height="70" Width="122" HorizontalAlignment="Left" Margin="0,0,0,150">
-            <Image Source="C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\Images\logo.png" Height="70" Width="122" HorizontalAlignment="Left" />
+            <Menu Grid.Column="1" Style="{StaticResource MenuStyle}">
+                <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Datoteka" Header="File">
+                    <MenuItem x:Name="import" Header="Import" Background="#EFE9E1" Click="Import_Click"/>
+                    <MenuItem x:Name="export" Header="Export" Background="#EFE9E1" Click="Export_Click"/>
+                </MenuItem>
+                <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Oglasi" Header="Ads">
+                    <MenuItem x:Name="Dodaj" Header="Add" Click="Dodaj_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic"/>
+                    <MenuItem x:Name="Odstrani" Header="Remove" CommandParameter="{Binding Path=CurrSelected}" Click="Brisi_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic"/>
+                    <MenuItem x:Name="Uredi" Header="Edit" CommandParameter="{Binding Path=CurrSelected}" Click="Edit_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic"/>
+                </MenuItem>
+                <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Orodja" Header="Tools"/>
+                <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Nastavitve" Header="Settings" Click="NastavitveClick"/>
+                <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Izhod" Header="Exit" Click="ExitApp"/>
+            </Menu>
+        </Grid>
+
+        <!-- Middle Row: Content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Panel: ListView -->
+            <ListView Style="{StaticResource ListViewStyle}" x:Name="ListaOglasa" Grid.Column="0" ItemsSource="{Binding ListaOglasi}" SelectedItem="{Binding Path=CurrSelected}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ShowGridLines="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBlockHeaderStyle}" Text="{Binding Naziv}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBlockNormalStyle}" Text="{Binding Znamka}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource TextBlockNormalStyle}" Text="{Binding Starost}"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBlockNormalStyle}" Text="{Binding LetoProizvodnje}"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource TextBlockNormalStyle}" Text="{Binding PrevozeniKm}"/>
+                            <Image Grid.Column="0" Source="{Binding Slika}" VerticalAlignment="Center" Height="70" Width="80" Margin="0,0,10,0"></Image>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- Right Panel: Filtering UserControl -->
+            <uc:Filtering Grid.Column="1" Style="{StaticResource FilteringStyle}" />
+            <Label Grid.Column="1" Style="{StaticResource LabelTimeStyle}" x:Name="Label_Time"></Label>
+            <Label Grid.Column="1" Style="{StaticResource CurrentLabelStyle}" x:Name="current" Content="{Binding Path=CurrSelected.Naziv}" />
+        </Grid>
+
+        <!-- Bottom Row: Button -->
+        <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Content="TEST">
+            <Button.Foreground>
+                <SolidColorBrush x:Name="textColor" Color="Black"/>
+            </Button.Foreground>
+
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Duration="0:0:1" From="13" To="20"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Duration="0:0:1" From="20" To="13"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="Window.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <StringAnimationUsingKeyFrames Storyboard.TargetProperty="Content" Duration="0:0:5">
+                                <DiscreteStringKeyFrame Value="Test" KeyTime="0:0:1"/>
+                                <DiscreteStringKeyFrame Value="Test" KeyTime="0:0:3"/>
+                                <DiscreteStringKeyFrame/>
+                            </StringAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
         </Button>
 
-        <StackPanel Orientation="Horizontal" Width="800" Margin="0,173,0,-512" Grid.RowSpan="2">
-            <uc:Filtering Grid.Row="1" VerticalAlignment="Top" Height="257" Width="400"/>
-        </StackPanel>
-
-        <ListView ItemsSource="{Binding listaOglasa}" SelectedItem="{Binding Path=CurrSelected}" HorizontalAlignment="Right" x:Name="ListaOglasa" Background="#D1C7BD" BorderBrush="#72383D" BorderThickness="3" FontStyle="Italic" FontWeight="DemiBold" Height="180" Width="270" Margin="0,0,20,0" Grid.Row="1">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid ShowGridLines="False" x:Name="grid">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Grid.Row="0" Grid.Column="1" FontWeight="Bold" FontSize="14" FontStyle="Italic"  TextAlignment="Center" Text="{Binding Naziv}"/>
-                        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="12" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" Text="{Binding Znamka}"/>
-                        <TextBlock Grid.Row="2" Grid.Column="1" FontSize="12" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" Text="{Binding Starost}"/>
-                        <TextBlock Grid.Row="3" Grid.Column="1" FontSize="12" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" Text="{Binding LetoProizvodnje}"/>
-                        <TextBlock Grid.Row="4" Grid.Column="1" FontSize="12" FontWeight="Normal" FontStyle="Italic" TextAlignment="Center" Text="{Binding PrevozeniKm}"/>
-                        <Image Grid.Column="0" Source="{Binding Slika}" Height="40" Width="35" Margin="0,0,10,0"></Image>
-                        
-                        <!--
-                        <Image.Style>
-                                <Style TargetType="Image">
-                                    <Setter Property="Source" Value="{Binding Slika}" />
-                                    <Style.Triggers>
-                                        <DataTrigger Value="True" Binding="{Binding HaveImage}">
-                                            <Setter Property="Source" Value="{Binding Slika}" />
-                                        </DataTrigger>
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding Path=HaveImage}" Value="False" />
-                                                <Condition Binding="{Binding Path=Znamka}" Value="bmw" />
-                                            </MultiDataTrigger.Conditions>
-                                            <Setter Property="Source" Value="/logo.png"/>
-                                        </MultiDataTrigger>
-                                        <MultiDataTrigger>
-                                            <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding Path=HaveImage}" Value="False" />
-                                                <Condition Binding="{Binding Path=Znamka}" Value="audi" />
-                                            </MultiDataTrigger.Conditions>
-                                            <Setter Property="Source" Value="/logo.png"/>
-                                        </MultiDataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                        <Image.Style />
-                        -->
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
     </Grid>
-
 </Window>

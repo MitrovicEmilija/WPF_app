@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -9,11 +10,22 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Xml.Linq;
 
 namespace PrevoznaSredstva
 {
     public class ViewModel : INotifyPropertyChanged
     {
+        // tukaj so metode za vmesnik INotifyPropertyChanged
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public event EventHandler? CanExecuteChanged;
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         // Singleton pattern za view model
 
         public static ViewModel instance = null;
@@ -28,21 +40,16 @@ namespace PrevoznaSredstva
             return instance;
         }
 
-        // tukaj so metode za vmesnik INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public event EventHandler? CanExecuteChanged;
-
-        public void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         // lista oglasa in ICommand objekti
         public ObservableCollection<Oglasi> listaOglasa { get; set; }
         public ICommand DodajOglasCommand { get; set; }
         public ICommand OdstraniOglasCommand { get; set; }
         public ICommand UrediOglasCommand { get; set; }
+
+        private String updateNaziv;
+        private String updateZnamka;
+        private String updateLeto;
+        public StringCollection znamkeKolekcija;
 
         // konstruktor ViewModel
         public ViewModel()
@@ -51,6 +58,25 @@ namespace PrevoznaSredstva
             OdstraniOglasCommand = new TestHandler(odstraniOglas);
             UrediOglasCommand = new TestHandler(urediOglas);
             listaOglasa = new ObservableCollection<Oglasi>();
+
+            if (Properties.Settings.Default.Znamka == null)
+            {
+                Properties.Settings.Default.Znamka = new StringCollection();
+            }
+            znamkeKolekcija = Properties.Settings.Default.Znamka;
+        }
+
+        public ObservableCollection<Oglasi> ListaOglasi
+        {
+            get { return listaOglasa; }
+            set
+            {
+                if (listaOglasa != value)
+                {
+                    listaOglasa = value;
+                    OnPropertyChanged(nameof(listaOglasa));
+                }
+            }
         }
 
         public Oglasi? currSelected;
@@ -64,49 +90,6 @@ namespace PrevoznaSredstva
                 {
                     currSelected = value;
                     OnPropertyChanged(nameof(CurrSelected));
-                }
-            }
-        }
-
-        private String updateNaziv;
-        private String updateZnamka;
-        private String updateLeto;
-
-        public String UpdateNaziv
-        {
-            get { return updateNaziv; }
-            set
-            {
-                if (updateNaziv != value)
-                {
-                    updateNaziv = value;
-                    OnPropertyChanged(nameof(updateNaziv));
-                }
-            }
-        }
-
-        public String UpdateZnamka
-        {
-            get { return updateZnamka; }
-            set
-            {
-                if (updateZnamka != value)
-                {
-                    updateZnamka = value;
-                    OnPropertyChanged(nameof(updateZnamka));
-                }
-            }
-        }
-
-        public String UpdateLeto
-        {
-            get { return updateLeto; }
-            set
-            {
-                if (updateLeto != value)
-                {
-                    updateLeto = value;
-                    OnPropertyChanged(nameof(updateLeto));
                 }
             }
         }
@@ -175,6 +158,45 @@ namespace PrevoznaSredstva
             public void Execute(object parameter)
             {
                 _execute(parameter);
+            }
+        }
+
+        public String UpdateNaziv
+        {
+            get { return updateNaziv; }
+            set
+            {
+                if (updateNaziv != value)
+                {
+                    updateNaziv = value;
+                    OnPropertyChanged(nameof(updateNaziv));
+                }
+            }
+        }
+
+        public String UpdateZnamka
+        {
+            get { return updateZnamka; }
+            set
+            {
+                if (updateZnamka != value)
+                {
+                    updateZnamka = value;
+                    OnPropertyChanged(nameof(updateZnamka));
+                }
+            }
+        }
+
+        public String UpdateLeto
+        {
+            get { return updateLeto; }
+            set
+            {
+                if (updateLeto != value)
+                {
+                    updateLeto = value;
+                    OnPropertyChanged(nameof(updateLeto));
+                }
             }
         }
     }
