@@ -3,7 +3,6 @@ C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-w
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.dll.config
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.deps.json
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.runtimeconfig.json
-C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.dll
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\bin\Debug\net6.0-windows\PrevoznaSredstva.pdb
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva.csproj.AssemblyReference.cache
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\AddWin.g.cs
@@ -32,3 +31,4 @@ C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-w
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva.pdb
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva.genruntimeconfig.cache
 C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\ref\PrevoznaSredstva.dll
+C:\Users\emami\source\repos\PrevoznaSredstva\PrevoznaSredstva\obj\Debug\net6.0-windows\PrevoznaSredstva.csproj.CopyComplete

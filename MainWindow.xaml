@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:PrevoznaSredstva.MyUserControl"
         xmlns:local="clr-namespace:PrevoznaSredstva" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="900" SizeToContent="WidthAndHeight">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -39,13 +39,17 @@
                     <MenuItem x:Name="export" Header="Export" Background="#EFE9E1" Click="Export_Click"/>
                 </MenuItem>
                 <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Oglasi" Header="Ads">
-                    <MenuItem x:Name="Dodaj" Header="Add" Click="Dodaj_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic"/>
+                    <MenuItem x:Name="Dodaj" Header="Add" Click="Dodaj_Click" Style="{StaticResource MenuItemStyle}" />
                     <MenuItem x:Name="Odstrani" Header="Remove" CommandParameter="{Binding Path=CurrSelected}" Click="Brisi_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic"/>
                     <MenuItem x:Name="Uredi" Header="Edit" CommandParameter="{Binding Path=CurrSelected}" Click="Edit_Click" FontSize="16" Background="#EFE9E1" FontWeight="Bold" FontStyle="Italic"/>
                 </MenuItem>
                 <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Orodja" Header="Tools"/>
                 <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Nastavitve" Header="Settings" Click="NastavitveClick"/>
-                <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Izhod" Header="Exit" Click="ExitApp"/>
+                <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Layout" Header="Layout">
+                    <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Default" Header="Def" Click="DefaultLayout_Click" />
+                    <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Alternative" Header="Alt" Click="AlternativeLayout_Click" />
+                    <MenuItem Style="{StaticResource MenuItemStyle}" x:Name="Izhod" Header="Exit" Click="ExitApp"/>
+                </MenuItem>
             </Menu>
         </Grid>
 
@@ -90,42 +94,5 @@
             <Label Grid.Column="1" Style="{StaticResource LabelTimeStyle}" x:Name="Label_Time"></Label>
             <Label Grid.Column="1" Style="{StaticResource CurrentLabelStyle}" x:Name="current" Content="{Binding Path=CurrSelected.Naziv}" />
         </Grid>
-
-        <!-- Bottom Row: Button -->
-        <Button Style="{StaticResource ButtonStyle}" Grid.Row="2" Content="TEST">
-            <Button.Foreground>
-                <SolidColorBrush x:Name="textColor" Color="Black"/>
-            </Button.Foreground>
-
-            <Button.Triggers>
-                <EventTrigger RoutedEvent="MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Duration="0:0:1" From="13" To="20"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <DoubleAnimation Storyboard.TargetProperty="FontSize" Duration="0:0:1" From="20" To="13"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-
-                <EventTrigger RoutedEvent="Window.Loaded">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <StringAnimationUsingKeyFrames Storyboard.TargetProperty="Content" Duration="0:0:5">
-                                <DiscreteStringKeyFrame Value="Test" KeyTime="0:0:1"/>
-                                <DiscreteStringKeyFrame Value="Test" KeyTime="0:0:3"/>
-                                <DiscreteStringKeyFrame/>
-                            </StringAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Button.Triggers>
-        </Button>
-
     </Grid>
 </Window>

@@ -40,8 +40,82 @@
                 <Label Name="km" Content="Spent km" Style="{StaticResource CustomLabelStyle}" Height="25" Canvas.Top="221" RenderTransformOrigin="0.423,0.356" Canvas.Left="10"/>
                 <TextBox x:Name="prevozeni_km" Style="{StaticResource CustomTextBoxStyle}" RenderTransformOrigin="0.523,0.6" Canvas.Left="168" Canvas.Top="221"></TextBox>
 
-                <Button Name="potrdi" Content="Confirm" IsDefault="True" Click="potrdi_Click" Style="{StaticResource CustomButtonStyle}" RenderTransformOrigin="0.553,0.583" Canvas.Left="385" Canvas.Top="206"></Button>
-                <Button Name="zavrni" Content="Cancel" IsCancel="True" Style="{StaticResource CustomButtonStyle}" Canvas.Left="385" Canvas.Top="232" Height="19"></Button>
+                <Button Name="potrdi" Content="Confirm" IsDefault="True" Click="potrdi_Click" Style="{StaticResource CustomButtonStyle}" RenderTransformOrigin="0.553,0.583" Canvas.Left="385" Canvas.Top="206">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="FontSize" Duration="0:0:1" From="11" To="14"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="FontSize" Duration="0:0:1" From="14" To="11"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Window.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <StringAnimationUsingKeyFrames 
+                                        Storyboard.TargetName="potrdi" Storyboard.TargetProperty="(Button.Content)"
+                                        Duration="0:0:4" FillBehavior="HoldEnd">
+                                        <DiscreteStringKeyFrame Value="" KeyTime="0:0:0" />
+                                        <DiscreteStringKeyFrame Value="C" KeyTime="0:0:1" />
+                                        <DiscreteStringKeyFrame Value="Co" KeyTime="0:0:1.5" />
+                                        <DiscreteStringKeyFrame Value="Con" KeyTime="0:0:2" />
+                                        <DiscreteStringKeyFrame Value="Conf" KeyTime="0:0:2.5" />
+                                        <DiscreteStringKeyFrame Value="Confi" KeyTime="0:0:3" />
+                                        <DiscreteStringKeyFrame Value="Confir" KeyTime="0:0:3.5" />
+                                        <DiscreteStringKeyFrame Value="Confirm" KeyTime="0:0:4" />
+                                    </StringAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+                
+                <Button Name="zavrni" Content="Cancel" IsCancel="True" Style="{StaticResource CustomButtonStyle}" Canvas.Left="385" Canvas.Top="232" Height="19">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="FontSize" Duration="0:0:1" From="11" To="14"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="FontSize" Duration="0:0:1" From="14" To="11"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Window.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <StringAnimationUsingKeyFrames 
+                                        Storyboard.TargetName="zavrni" Storyboard.TargetProperty="(Button.Content)"
+                                        Duration="0:0:3.5" FillBehavior="HoldEnd">
+                                        <DiscreteStringKeyFrame Value="" KeyTime="0:0:0" />
+                                        <DiscreteStringKeyFrame Value="C" KeyTime="0:0:1" />
+                                        <DiscreteStringKeyFrame Value="Ca" KeyTime="0:0:1.5" />
+                                        <DiscreteStringKeyFrame Value="Can" KeyTime="0:0:2" />
+                                        <DiscreteStringKeyFrame Value="Canc" KeyTime="0:0:2.5" />
+                                        <DiscreteStringKeyFrame Value="Cance" KeyTime="0:0:3" />
+                                        <DiscreteStringKeyFrame Value="Cancel" KeyTime="0:0:3.5" />
+                                    </StringAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
             </Canvas>
         </Border>
     </Grid>

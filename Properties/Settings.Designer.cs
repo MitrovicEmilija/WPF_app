@@ -59,5 +59,29 @@ namespace PrevoznaSredstva.Properties {
                 this["Znamka1"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableAutoSave {
+            get {
+                return ((bool)(this["EnableAutoSave"]));
+            }
+            set {
+                this["EnableAutoSave"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int TimeInterval {
+            get {
+                return ((int)(this["TimeInterval"]));
+            }
+            set {
+                this["TimeInterval"] = value;
+            }
+        }
     }
 }

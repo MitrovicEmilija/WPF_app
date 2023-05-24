@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOglasi xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Oglasi>
+    <Naziv>oglas1</Naziv>
+    <Znamka>bmw</Znamka>
+    <Starost>3423</Starost>
+    <LetoProizvodnje>423</LetoProizvodnje>
+    <PrevozeniKm>2</PrevozeniKm>
+  </Oglasi>
+</ArrayOfOglasi>

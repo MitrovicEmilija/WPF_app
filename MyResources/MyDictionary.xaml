@@ -6,7 +6,7 @@
         <Setter Property="Background" Value="#D1C7BD"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="Width" Value="550"/>
+        <Setter Property="Width" Value="600"/>
         <Setter Property="Height" Value="80"/>
     </Style>
 
@@ -16,7 +16,7 @@
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontStyle" Value="Italic"/>
         <Setter Property="Height" Value="30"/>
-        <Setter Property="Width" Value="110"/>
+        <Setter Property="Width" Value="120"/>
     </Style>
 
     <Style x:Key="ListViewStyle" TargetType="ListView">
@@ -27,7 +27,7 @@
         <Setter Property="FontWeight" Value="DemiBold"/>
         <Setter Property="Height" Value="300"/>
         <Setter Property="Width" Value="250"/>
-        <Setter Property="Margin" Value="10,0,0,0"/>
+        <Setter Property="Margin" Value="30,0,0,0"/>
     </Style>
 
     <Style x:Key="ButtonStyle" TargetType="Button">
@@ -205,7 +205,7 @@
         <Setter Property="Height" Value="20" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="Margin" Value="0,5" />
+        <Setter Property="Margin" Value="10,5" />
         <Setter Property="Background" Value="#EFE9E1" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontStyle" Value="Italic" />

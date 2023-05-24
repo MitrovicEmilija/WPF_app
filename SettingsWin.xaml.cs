@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,7 +15,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PrevoznaSredstva
 {
@@ -22,7 +25,8 @@ namespace PrevoznaSredstva
     /// Interaction logic for Window1.xaml
     /// </summary>
     public partial class Window1 : Window
-    {        
+    {
+        private DispatcherTimer autoSaveTimer;
         public Window1()
         {
             InitializeComponent();
@@ -51,47 +55,16 @@ namespace PrevoznaSredstva
             vm.PosodobiZnamko.Execute(null);
             ListaZnamk.Items.Refresh();
         }
-
-        /*
-        // List the current items.
-        private void ListItems()
+        private void TurnOn_Click(object sender, RoutedEventArgs e)
         {
-            ListaZnamk.ItemsSource =
-                Properties.Settings.Default.Znamka.Cast<string>().ToArray();
-            ListaZnamk.SelectedIndex = -1;
+            ((MainWindow)System.Windows.Application.Current.MainWindow).StartTimer();
+            txtAutoSave.Text = "Auto save is on";
         }
 
-        // Display the selected item.
-        private void LstZnamk_SelectedIndexChanged(object sender, EventArgs e)
+        private void TurnOff_Click(object sender, RoutedEventArgs e)
         {
-            if (ListaZnamk.SelectedItem == null)
-                txtNazivZnamke.Clear();
-            else
-                txtNazivZnamke.Text = ListaZnamk.SelectedItem.ToString();
+            ((MainWindow)System.Windows.Application.Current.MainWindow).StopTimer();
+            txtAutoSave.Text = DateTime.Now.ToString() + "Auto save is off!";
         }
-
-        // Add a value.
-        private void BtnAdd_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.Znamka.Add(txtNazivZnamke.Text);
-            Properties.Settings.Default.Save();
-            txtNazivZnamke.Clear();
-            txtNazivZnamke.Focus();
-            ListItems();
-        }
-
-        // Remove an item value.
-        private void BtnRemove_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.Znamka.Remove(ListaZnamk.SelectedItem.ToString());
-            txtNazivZnamke.Clear();
-            txtNazivZnamke.Focus();
-            ListItems();
-        }
-        private void BtnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-        */
     }
 }
